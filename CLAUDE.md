@@ -813,6 +813,7 @@ When I correct you, or you catch yourself making a mistake: before continuing ad
 ## Lessons
 
 - (Claude adds rules here)
+- `agent-skills-cli` (`npx agent-skills-cli add/remove`) is not trustworthy from flags alone: `add` ignores `--dry-run` and any sub-path in the repo URL (always installs all ~271 skills), and `remove` deletes the whole `~/.claude/skills/` directory rather than only the names passed. Verify on disk (`ls`, mtimes) after every call, and never run it project-locally inside this repo — `.codex/skills/` here is committed symlinks it will try to overwrite.
 
 ## Additional Resources
 
