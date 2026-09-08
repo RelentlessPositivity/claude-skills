@@ -1,13 +1,13 @@
 ---
 title: "AI Coding Agents — Agent-Native Orchestrators & Codex Skills"
-description: "98 agent-native orchestrators for Claude Code, Codex CLI, and Gemini CLI — multi-skill AI agents across engineering, product, marketing, and more."
+description: "102 agent-native orchestrators for Claude Code, Codex CLI, and Gemini CLI — multi-skill AI agents across engineering, product, marketing, and more."
 ---
 
 <div class="domain-header" markdown>
 
 # :material-robot: Agents
 
-<p class="domain-count">98 agents that orchestrate skills across domains</p>
+<p class="domain-count">102 agents that orchestrate skills across domains</p>
 
 </div>
 
@@ -289,6 +289,12 @@ description: "98 agent-native orchestrators for Claude Code, Codex CLI, and Gemi
 
     Engineering - POWERFUL
 
+-   :material-rocket-launch:{ .lg .middle } **[Deep Learning Tutor](cs-deep-learning-tutor.md)**
+
+    ---
+
+    Engineering - POWERFUL
+
 -   :material-rocket-launch:{ .lg .middle } **[Grill Master Agent](cs-grill-master.md)**
 
     ---
@@ -344,6 +350,12 @@ description: "98 agent-native orchestrators for Claude Code, Codex CLI, and Gemi
     Engineering - POWERFUL
 
 -   :material-rocket-launch:{ .lg .middle } **[Skill Doctor](cs-skill-doctor.md)**
+
+    ---
+
+    Engineering - POWERFUL
+
+-   :material-rocket-launch:{ .lg .middle } **[Spinning Up in Deep RL — Knowledge Agent](cs-spinning-up-deep-rl.md)**
 
     ---
 
@@ -446,6 +458,18 @@ description: "98 agent-native orchestrators for Claude Code, Codex CLI, and Gemi
     Productivity
 
 -   :material-bullhorn-outline:{ .lg .middle } **[Landing Agent](cs-landing.md)**
+
+    ---
+
+    Marketing
+
+-   :material-bullhorn-outline:{ .lg .middle } **[LinkedIn Editor Agent](cs-linkedin-editor.md)**
+
+    ---
+
+    Marketing
+
+-   :material-bullhorn-outline:{ .lg .middle } **[LinkedIn Orchestrator Agent](cs-linkedin-orchestrator.md)**
 
     ---
 

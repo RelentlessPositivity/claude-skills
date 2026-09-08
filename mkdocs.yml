@@ -255,6 +255,8 @@ nav:
       - "Grill Me (Matt Pocock-derived)": skills/engineering/grill-me.md
       - "Handoff (Matt Pocock-derived)": skills/engineering/handoff.md
       - "Workflow Builder": skills/engineering/workflow-builder.md
+      - "Deep Learning Book (Study Companion)": skills/engineering/deep-learning-book.md
+      - "Spinning Up in Deep RL": skills/engineering/spinning-up-deep-rl.md
       - AgentHub:
         - "AgentHub": skills/engineering/agenthub.md
         - "/hub:hub-init": skills/engineering/agenthub-init.md
