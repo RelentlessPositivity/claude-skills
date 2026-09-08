@@ -257,6 +257,11 @@ nav:
       - "Workflow Builder": skills/engineering/workflow-builder.md
       - "Deep Learning Book (Study Companion)": skills/engineering/deep-learning-book.md
       - "Spinning Up in Deep RL": skills/engineering/spinning-up-deep-rl.md
+      - "Book-to-Skill Converter": skills/engineering/book-to-skill.md
+      - "Skill Doctor (Grade the Agent Setup)": skills/engineering/skill-doctor.md
+      - "Memory Engineering": skills/engineering/memory-engineering.md
+      - "Agent Memory": skills/engineering/agent-memory.md
+      - "Agent Harness": skills/engineering/agent-harness.md
       - AgentHub:
         - "AgentHub": skills/engineering/agenthub.md
         - "/hub:hub-init": skills/engineering/agenthub-init.md
@@ -441,9 +446,22 @@ nav:
       - "Reflect (Light-Prompt Journal)": skills/productivity/reflect.md
       - "Handoff (Matt Pocock-inspired)": skills/productivity/handoff.md
       - "Andreessen (Market-First Decisions)": skills/productivity/andreessen.md
+      - "Deep Work (Time-Block Planner)": skills/productivity/deep-work.md
+      - "Fable Goal Prompt Writer": skills/productivity/fable-goal.md
+      - "Meetings (Cost Gate + Agenda)": skills/productivity/meetings.md
+      - "Roast (5-Angle Idea Panel)": skills/productivity/roast.md
+      - "Swedish Mentor (YouTube & Podcast)": skills/productivity/swedish-mentor.md
+      - "Weekly Review (GTD Loop)": skills/productivity/weekly-review.md
     - Marketing (Landing Pages):
       - Overview: skills/marketing/index.md
       - "Landing Page Generator (HTML)": skills/marketing/landing.md
+      - LinkedIn:
+        - "LinkedIn (Organic Presence Orchestrator)": skills/marketing/linkedin-linkedin-skills.md
+        - "LinkedIn Profile": skills/marketing/linkedin-linkedin-profile.md
+        - "LinkedIn Strategy": skills/marketing/linkedin-linkedin-strategy.md
+        - "LinkedIn Content": skills/marketing/linkedin-linkedin-content.md
+        - "LinkedIn Engagement": skills/marketing/linkedin-linkedin-engagement.md
+        - "LinkedIn Analytics": skills/marketing/linkedin-linkedin-analytics.md
     - Research:
       - Overview: skills/research/index.md
       - "Research Orchestrator (Hybrid Router)": skills/research/research.md
