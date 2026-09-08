@@ -38,6 +38,30 @@ SKIP_PATTERNS = [
 ]
 
 
+def find_stale_pages(directory, keep_filenames):
+    """Return .md filenames present in `directory` that this run did not
+    (re)write. Report-only: NEVER auto-delete these.
+
+    A file showing up here can mean either (a) its source was renamed/moved
+    and the old output page is genuinely dead, or (b) the domain/plugin it
+    belongs to isn't covered by this script's DOMAINS / AGENT_DOMAINS /
+    SKILL_TO_AGENT_DOMAIN tables (e.g. c-level-agents was found missing from
+    DOMAINS entirely during a 2026-09 audit — treating (b) as (a) and
+    deleting on sight would have wiped 46 real, nav-linked pages, several
+    still directly referenced by mkdocs.yml nav despite their literal source
+    SKILL.md path no longer existing). Only a human check against
+    mkdocs.yml nav and each page's actual source can tell (a) from (b) —
+    see docs/skills/*/index.md and mkdocs.yml for what's actually linked
+    before deleting anything reported here.
+    """
+    if not os.path.isdir(directory):
+        return []
+    return sorted(
+        fn for fn in os.listdir(directory)
+        if fn.endswith(".md") and fn not in keep_filenames
+    )
+
+
 def find_skill_files():
     """Walk the repo and find all SKILL.md files, grouped by domain.
 
@@ -463,8 +487,10 @@ def main():
         os.makedirs(os.path.join(DOCS_DIR, "skills", domain_key), exist_ok=True)
 
     total = 0
+    domain_written_files = {}
     # Generate individual skill pages
     for domain_key, skills in skills_by_domain.items():
+        written_this_domain = domain_written_files.setdefault(domain_key, set())
         top_level = [s for s in skills if not s["is_sub_skill"]]
         sub_skills = [s for s in skills if s["is_sub_skill"]]
         top_level_names = {s["name"] for s in top_level}
@@ -475,6 +501,7 @@ def main():
             page_path = os.path.join(DOCS_DIR, "skills", domain_key, f"{slug}.md")
             with open(page_path, "w", encoding="utf-8") as f:
                 f.write(page_content)
+            written_this_domain.add(f"{slug}.md")
             total += 1
 
             # Generate sub-skill pages
@@ -485,6 +512,7 @@ def main():
                 child_path = os.path.join(DOCS_DIR, "skills", domain_key, f"{slug}-{child_slug}.md")
                 with open(child_path, "w", encoding="utf-8") as f:
                     f.write(child_content)
+                written_this_domain.add(f"{slug}-{child_slug}.md")
                 total += 1
 
         # Render orphan sub-skills (sub-skills whose parent is a plugin folder,
@@ -507,6 +535,7 @@ def main():
                 page_path = os.path.join(DOCS_DIR, "skills", domain_key, f"{parent_slug}.md")
                 with open(page_path, "w", encoding="utf-8") as f:
                     f.write(page_content)
+                written_this_domain.add(f"{parent_slug}.md")
                 total += 1
             # Render non-index children as <parent>-<child>.md
             # (preserves existing URLs like executive-mentor-challenge.md).
@@ -518,6 +547,7 @@ def main():
                 child_path = os.path.join(DOCS_DIR, "skills", domain_key, f"{parent_slug}-{child_slug}.md")
                 with open(child_path, "w", encoding="utf-8") as f:
                     f.write(child_content)
+                written_this_domain.add(f"{parent_slug}-{child_slug}.md")
                 total += 1
 
     # Generate domain index pages
@@ -577,6 +607,16 @@ description: "{skill_count} {domain_name.lower()} skills — {domain_seo_ctx}. W
         index_path = os.path.join(DOCS_DIR, "skills", domain_key, "index.md")
         with open(index_path, "w", encoding="utf-8") as f:
             f.write(index_content)
+        domain_written_files[domain_key].add("index.md")
+
+    # Report (never delete) skill pages this run didn't touch — see
+    # find_stale_pages() docstring for why these must be checked by hand.
+    stale_report = {}
+    for domain_key, written_this_domain in domain_written_files.items():
+        domain_dir = os.path.join(DOCS_DIR, "skills", domain_key)
+        stale = find_stale_pages(domain_dir, written_this_domain)
+        if stale:
+            stale_report[f"skills/{domain_key}"] = stale
 
     # Generate agent pages
     agents_dir = os.path.join(REPO_ROOT, "agents")
@@ -584,6 +624,7 @@ description: "{skill_count} {domain_name.lower()} skills — {domain_seo_ctx}. W
     os.makedirs(agents_docs_dir, exist_ok=True)
     agent_count = 0
     agent_entries = []
+    written_agent_files = set()
 
     # Agent domain mapping for display
     AGENT_DOMAINS = {
@@ -653,6 +694,7 @@ description: "{agent_desc}"
                 out_path = os.path.join(agents_docs_dir, f"{slug}.md")
                 with open(out_path, "w", encoding="utf-8") as f:
                     f.write(page)
+                written_agent_files.add(f"{slug}.md")
                 agent_count += 1
                 agent_entries.append((title, slug, domain_label, domain_icon))
 
@@ -744,6 +786,7 @@ description: "{agent_desc}"
                 out_path = os.path.join(agents_docs_dir, f"{slug}.md")
                 with open(out_path, "w", encoding="utf-8") as f:
                     f.write(page)
+                written_agent_files.add(f"{slug}.md")
                 agent_count += 1
                 agent_entries.append((title, slug, domain_label, domain_icon))
                 seen_slugs.add(slug)
@@ -779,6 +822,11 @@ description: "{agent_count} agent-native orchestrators for Claude Code, Codex CL
 '''
         with open(os.path.join(agents_docs_dir, "index.md"), "w", encoding="utf-8") as f:
             f.write(idx)
+        written_agent_files.add("index.md")
+
+    stale_agents = find_stale_pages(agents_docs_dir, written_agent_files)
+    if stale_agents:
+        stale_report["agents"] = stale_agents
 
     # Generate command pages
     commands_dir = os.path.join(REPO_ROOT, "commands")
@@ -786,6 +834,7 @@ description: "{agent_count} agent-native orchestrators for Claude Code, Codex CL
     os.makedirs(commands_docs_dir, exist_ok=True)
     cmd_count = 0
     cmd_entries = []
+    written_cmd_files = set()
 
     if os.path.isdir(commands_dir):
         for cmd_file in sorted(os.listdir(commands_dir)):
@@ -829,6 +878,7 @@ description: "{cmd_desc}"
             out_path = os.path.join(commands_docs_dir, f"{slug}.md")
             with open(out_path, "w", encoding="utf-8") as f:
                 f.write(page)
+            written_cmd_files.add(f"{slug}.md")
             cmd_count += 1
             desc = extract_subtitle(cmd_path) or title
             cmd_entries.append((cmd_name, slug, title, desc))
@@ -899,6 +949,7 @@ description: "{cmd_desc}"
             out_path = os.path.join(commands_docs_dir, f"{slug}.md")
             with open(out_path, "w", encoding="utf-8") as f:
                 f.write(page)
+            written_cmd_files.add(f"{slug}.md")
             cmd_count += 1
             seen_cmd_slugs.add(slug)
             desc = extract_subtitle(cmd_path) or title
@@ -938,12 +989,26 @@ description: "{cmd_count} slash commands for Claude Code, Codex CLI, and Gemini 
 '''
         with open(os.path.join(commands_docs_dir, "index.md"), "w", encoding="utf-8") as f:
             f.write(idx)
+        written_cmd_files.add("index.md")
+
+    stale_cmds = find_stale_pages(commands_docs_dir, written_cmd_files)
+    if stale_cmds:
+        stale_report["commands"] = stale_cmds
 
     # Print summary
     print(f"Generated {total} skill pages across {len(skills_by_domain)} domains.")
     print(f"Generated {agent_count} agent pages.")
     print(f"Generated {cmd_count} command pages.")
     print(f"Total: {total + agent_count + cmd_count} pages.")
+
+    if stale_report:
+        stale_count = sum(len(v) for v in stale_report.values())
+        print(f"\n{stale_count} page(s) on disk were NOT (re)written this run — review before deleting:")
+        print("(a stale source rename, OR a domain this script doesn't scan yet — check mkdocs.yml nav and the domain's index.md for inline links before removing anything)")
+        for location, files in sorted(stale_report.items()):
+            print(f"  {location}/")
+            for fn in files:
+                print(f"    - {fn}")
 
 
 if __name__ == "__main__":

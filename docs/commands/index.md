@@ -1,13 +1,13 @@
 ---
 title: "Slash Commands — AI Coding Agent Commands & Codex Shortcuts"
-description: "124 slash commands for Claude Code, Codex CLI, and Gemini CLI — sprint planning, tech debt analysis, PRDs, OKRs, and more."
+description: "136 slash commands for Claude Code, Codex CLI, and Gemini CLI — sprint planning, tech debt analysis, PRDs, OKRs, and more."
 ---
 
 <div class="domain-header" markdown>
 
 # :material-console: Slash Commands
 
-<p class="domain-count">124 commands for quick access to common operations</p>
+<p class="domain-count">136 commands for quick access to common operations</p>
 
 </div>
 
@@ -283,6 +283,24 @@ description: "124 slash commands for Claude Code, Codex CLI, and Gemini CLI — 
 
     Activates the claude-coach skill. From this point on, the conversation gains:
 
+-   :material-console:{ .lg .middle } **[`/cs-deep-learning`](cs-deep-learning.md)**
+
+    ---
+
+    Command: /cs:deep-learning topic | chNN | question
+
+-   :material-console:{ .lg .middle } **[`/cs-dl-diagnose`](cs-dl-diagnose.md)**
+
+    ---
+
+    Command: /cs:dl-diagnose symptoms
+
+-   :material-console:{ .lg .middle } **[`/cs-dl-reading-path`](cs-dl-reading-path.md)**
+
+    ---
+
+    Command: /cs:dl-reading-path goal
+
 -   :material-console:{ .lg .middle } **[`/cs-grill-me`](cs-grill-me.md)**
 
     ---
@@ -330,6 +348,12 @@ description: "124 slash commands for Claude Code, Codex CLI, and Gemini CLI — 
     ---
 
     You are driving SkillOpt-Sleep: a tool that lets this user's Claude agent
+
+-   :material-console:{ .lg .middle } **[`/cs-spinning-up-deep-rl`](cs-spinning-up-deep-rl.md)**
+
+    ---
+
+    Command: /cs:spinning-up-deep-rl topic | framework name | chNN
 
 -   :material-console:{ .lg .middle } **[`/cs-scrape`](cs-scrape.md)**
 
@@ -480,6 +504,54 @@ description: "124 slash commands for Claude Code, Codex CLI, and Gemini CLI — 
     ---
 
     Command: /cs:landing <product-or-brief>
+
+-   :material-console:{ .lg .middle } **[`/cs-grill-linkedin`](cs-grill-linkedin.md)**
+
+    ---
+
+    Command: /cs:grill-linkedin your plan
+
+-   :material-console:{ .lg .middle } **[`/cs-linkedin-analyze`](cs-linkedin-analyze.md)**
+
+    ---
+
+    Command: /cs:linkedin-analyze export path or the claim to test
+
+-   :material-console:{ .lg .middle } **[`/cs-linkedin-outreach`](cs-linkedin-outreach.md)**
+
+    ---
+
+    Command: /cs:linkedin-outreach who, and how much time
+
+-   :material-console:{ .lg .middle } **[`/cs-linkedin-plan`](cs-linkedin-plan.md)**
+
+    ---
+
+    Command: /cs:linkedin-plan your 90-day goal
+
+-   :material-console:{ .lg .middle } **[`/cs-linkedin-post`](cs-linkedin-post.md)**
+
+    ---
+
+    Command: /cs:linkedin-post idea or draft
+
+-   :material-console:{ .lg .middle } **[`/cs-linkedin-profile`](cs-linkedin-profile.md)**
+
+    ---
+
+    Command: /cs:linkedin-profile headline or profile description
+
+-   :material-console:{ .lg .middle } **[`/cs-linkedin-repurpose`](cs-linkedin-repurpose.md)**
+
+    ---
+
+    Command: /cs:linkedin-repurpose path to source
+
+-   :material-console:{ .lg .middle } **[`/cs-linkedin`](cs-linkedin.md)**
+
+    ---
+
+    Command: /cs:linkedin your goal
 
 -   :material-console:{ .lg .middle } **[`/cs-deep-research`](cs-deep-research.md)**
 
