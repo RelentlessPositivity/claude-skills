@@ -231,6 +231,12 @@ nav:
       - "Runbook Generator": skills/engineering/runbook-generator.md
       - "Secrets Vault Manager": skills/engineering/secrets-vault-manager.md
       - "Security Guidance": skills/engineering/security-guidance.md
+      - "Claude Coach": skills/engineering/claude-coach.md
+      - "Collab-Proof": skills/engineering/collab-proof.md
+      - "Grill with Docs": skills/engineering/grill-with-docs.md
+      - "Human Gate": skills/engineering/human-gate.md
+      - "SkillOpt-Sleep": skills/engineering/skillopt-sleep.md
+      - "Zero-Hallucination Coder": skills/engineering/zero-hallucination-coder.md
       - "Self-Eval": skills/engineering/self-eval.md
       - "Skill Security Auditor": skills/engineering/skill-security-auditor.md
       - "Skill Tester": skills/engineering/skill-tester.md
@@ -427,6 +433,8 @@ nav:
       - "Regulatory Affairs Head": skills/ra-qm-team/regulatory-affairs-head.md
       - "Risk Management Specialist": skills/ra-qm-team/risk-management-specialist.md
       - "SOC 2 Compliance": skills/ra-qm-team/soc2-compliance.md
+      - "EU AI Act Compliance Specialist (Standalone Plugin)": skills/ra-qm-team/compliance-team-eu-ai-act-eu-ai-act-specialist.md
+      - "ISO/IEC 42001 AI Management Specialist (Standalone Plugin)": skills/ra-qm-team/compliance-team-iso42001-iso42001-specialist.md
     - Business & Growth:
       - Overview: skills/business-growth/index.md
       - "Contract & Proposal Writer": skills/business-growth/contract-and-proposal-writer.md
@@ -472,6 +480,7 @@ nav:
       - "Patent (Prior Art + IP Landscape)": skills/research/patent.md
       - "Syllabus (Course Reading List)": skills/research/syllabus.md
       - "NotebookLM (Browser Automation)": skills/research/notebooklm.md
+      - "Deep Research (Disciplined Meta-Research)": skills/research/deep-research.md
     - Business Operations:
       - Overview: skills/business-operations/index.md
       - "Business Operations Skills (Orchestrator)": skills/business-operations/business-operations-skills.md
